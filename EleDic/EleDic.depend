@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1563705605 source:d:\codeblocks\eledic\eledic\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	"StringUtility.h"
+	"BasicStructrue.h"
+	"BasicFunctions.h"
+	"WordOperation.h"
+	"OtherOperation.h"
+
+1563703977 d:\codeblocks\eledic\eledic\stringutility.h
+	<stdio.h>
+	<string.h>
+	<malloc.h>
+
+1563707372 d:\codeblocks\eledic\eledic\basicstructrue.h
+
+1563705438 d:\codeblocks\eledic\eledic\basicfunctions.h
+
+1563707387 d:\codeblocks\eledic\eledic\wordoperation.h
+
+1563707372 d:\codeblocks\eledic\eledic\otheroperation.h
+
