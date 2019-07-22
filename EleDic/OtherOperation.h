@@ -53,7 +53,7 @@ void dictation(int choose,nodeptr list){
 
     int dicWordNum;
     fflush(stdin);
-    printf("请输入你想要听写的单词的个数\n");
+    printf("请输入你想要听写的单词的个数，并确保这个数字小于你所选择的文件的总单词个数\n");
     scanf("%d",&dicWordNum);
     int wrongNum = executeDictation(list,dicWordNum);
     saveDictationInfo(dicWordNum,wrongNum);
@@ -84,7 +84,6 @@ int executeDictation(nodeptr list,int n){
         tmp = list;
         for(j=0;j<num;++j){
             tmp = tmp->next;
-            printf("%s",(tmp->data).word);
         }
 
         //如果已经被听写过，重新选一个
@@ -141,7 +140,7 @@ void getCurrentTime(char info[]){
     time(&t);
     lt = localtime(&t);
 
-    sprintf(info,"%d年%d月%d日_%d时%d分",lt->tm_year+1900,lt->tm_mon,lt->tm_mday,lt->tm_hour,lt->tm_min);
+    sprintf(info,"%d年%d月%d日_%d时%d分",lt->tm_year+1900,lt->tm_mon+1,lt->tm_mday,lt->tm_hour,lt->tm_min);
     printf(info);
 }
 

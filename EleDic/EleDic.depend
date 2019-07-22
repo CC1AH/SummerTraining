@@ -28,3 +28,32 @@
 	"BasicFunctions.h"
 	"WordOperation.h"
 
+1563772027 source:d:\res\主导项目-文件夹下分支了单独仓库\summertraining\eledic\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<windows.h>
+	"StringUtility.h"
+	"BasicStructrue.h"
+	"BasicFunctions.h"
+	"WordOperation.h"
+	"OtherOperation.h"
+
+1563757958 d:\res\主导项目-文件夹下分支了单独仓库\summertraining\eledic\stringutility.h
+	<stdio.h>
+	<string.h>
+	<malloc.h>
+
+1563757948 d:\res\主导项目-文件夹下分支了单独仓库\summertraining\eledic\basicstructrue.h
+
+1563769257 d:\res\主导项目-文件夹下分支了单独仓库\summertraining\eledic\basicfunctions.h
+
+1563707387 d:\res\主导项目-文件夹下分支了单独仓库\summertraining\eledic\wordoperation.h
+
+1563772243 d:\res\主导项目-文件夹下分支了单独仓库\summertraining\eledic\otheroperation.h
+	<time.h>
+	"BasicStructrue.h"
+	"BasicFunctions.h"
+	"WordOperation.h"
+

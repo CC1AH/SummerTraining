@@ -1,13 +1,23 @@
+/**
+* 该文件是电子辞典个人项目的主函数入口文件
+* @author 邢国浩
+* 本项目已在公共仓库上线：https://github.com/CC1AH/SummerTraining/tree/dev-XGH
+* 项目进行时间 2019/7/20-2019/7/22
+* 开发平台：GNU GCC Compiler(mingw32-gcc.exe)-CodeBlocks-windows10.
+* 项目代码行数:937行
+*
+* 感谢：
+* github UserName-TransFormGang    提供算法参考
+* group member-贾聪    提供通用StringUtility.h头文件
+*
+* copyright reserved
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <windows.h>
-/**
-*
-*
-*/
-
 //其中包含了字符串处理的拓展函数(contains spilt等)
 #include "StringUtility.h"
 
@@ -20,7 +30,7 @@
 //其中包含了对于单词本身的操作模块函数addWord,deleteWord,modifyWord
 #include "WordOperation.h"
 
-//其中包含听写，收藏的附加功能函数collections和dictation
+//其中包含听写，收藏的附加功能函数collections和dictation （包含子功能函数 执行听写 保存听写 获取当前日期时间等等）
 #include "OtherOperation.h"
 
 int main(){
@@ -69,13 +79,11 @@ int main(){
         fflush(stdin);
         printf("请输入选择：");
         scanf("%d",&chose);
-        //听写时还没有初始化收藏夹
-        collectionptr = initialCollections(collectionptr);
         if(chose == 1 || chose == 3)
         dictation(chose,mainptr);
         if(chose == 2){
+        collectionptr = initialCollections(collectionptr); //听写前初始化收藏夹
         dictation(chose,collectionptr);
-        collectionptr = initialCollections(collectionptr);
         }
         break;
     case 7:
