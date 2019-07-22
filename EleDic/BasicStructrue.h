@@ -17,6 +17,7 @@ struct content
 {
     char word[WORDNUM+1];
     char mean[MEANNUM+1];
+    int isDictated;//记录是否已经被听写的状态量
 };
 
 //链表

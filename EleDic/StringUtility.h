@@ -60,7 +60,8 @@ char* subString(char *str, int posLow, int posHig) {
 	char *sub = (char*)malloc(sizeof(char)*(posHig - posLow + 2));
 	memset(sub, '\0', sizeof(char)*(posHig - posLow + 2));
 
-	for (int i = posLow; i <= posHig; i++,y++) {
+	int i;
+	for (i = posLow; i <= posHig; i++,y++) {
 		*(sub + y) = *(str + i);
 	}
 	*(sub + y) = '\0';
@@ -70,7 +71,8 @@ char* subString(char *str, int posLow, int posHig) {
 
 void subStringLocal(char *str, int posLow, int posHig) {
 	int y = 0;
-	for (int i = posLow; i < posHig; i++,y++) {
+	int i;
+	for (i = posLow; i < posHig; i++,y++) {
 		str[y] = str[i];
 	}
 	str[y] = '\0';
@@ -95,7 +97,8 @@ int isEmpty(char *str) {
 char** split(char *str,char spChar) {
 	int row=0,y=0,ii=0;
 
-	for (int i = 0; i < strlen(str); i++) {
+	int i;
+	for (i = 0; i < strlen(str); i++) {
 		if (str[i] == spChar) {
 			row++;
 		}
@@ -103,11 +106,11 @@ char** split(char *str,char spChar) {
 	row++;
 	char **res = (char **)malloc(sizeof(char)*row);
 	int *each = (int *)malloc(sizeof(int)*row);
-	for (int i = 0; i < row; i++) {
+	for (i = 0; i < row; i++) {
 		each[i] = 0;
 	}
 
-	for (int i = 0; i < strlen(str); i++) {
+	for (i = 0; i < strlen(str); i++) {
 		if (str[i] == '\0' || str[i] == spChar) {
 			res[y] = (char*)malloc(sizeof(char)*(each[y] + 1));
 			y++;
@@ -121,7 +124,7 @@ char** split(char *str,char spChar) {
 
 	y = 0;
 	ii = 0;
-	for (int i = 0; i < strlen(str); i++) {
+	for (i = 0; i < strlen(str); i++) {
 		if (str[i] == '\0' || str[i] == spChar) {
 			res[y][ii] = '\0';
 			y++;

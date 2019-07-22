@@ -3,6 +3,10 @@
 #include <string.h>
 #include <time.h>
 #include <windows.h>
+/**
+*
+*
+*/
 
 //其中包含了字符串处理的拓展函数(contains spilt等)
 #include "StringUtility.h"
@@ -22,6 +26,7 @@
 int main(){
     //初始化数据结构
     nodeptr mainptr = NULL;
+    nodeptr collectionptr = NULL;
     mainptr = initial(mainptr);
     double start = clock();
     double finish;
@@ -52,11 +57,26 @@ int main(){
         break;
     case 5:
         system("cls");
-        collections(mainptr);
+        collections(collectionptr);
         break;
     case 6:
         system("cls");
-        dictation(mainptr);
+        printf("                        |--------------------测试模式---------------------|\n");
+        printf("                        |------------------(1)从全部单词中抽取测试-----------------------|\n");
+        printf("                        |------------------(2)从收藏夹中抽取测试-------------------------|\n");
+        printf("                        |------------------(3)查看目前为止全部的听写信息-------------------------|\n");
+        int chose;
+        fflush(stdin);
+        printf("请输入选择：");
+        scanf("%d",&chose);
+        //听写时还没有初始化收藏夹
+        collectionptr = initialCollections(collectionptr);
+        if(chose == 1 || chose == 3)
+        dictation(chose,mainptr);
+        if(chose == 2){
+        dictation(chose,collectionptr);
+        collectionptr = initialCollections(collectionptr);
+        }
         break;
     case 7:
         system("cls");
@@ -64,6 +84,8 @@ int main(){
         break;
     case 8:
         system("cls");
+        char info[200];
+        getCurrentTime(info);
         printf("\n\n\n\t\t\t您已经退出这个程序，感谢您的陪伴。");
         finish = clock();
         printf("\n\t\t\t本次使用时间：%d s",(int)((finish - start)/CLOCKS_PER_SEC));
