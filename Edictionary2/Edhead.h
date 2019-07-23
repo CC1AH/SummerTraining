@@ -3,7 +3,8 @@
 #include<stdlib.h>
 #include<windows.h>
 #include<time.h>
-
+#include"game2.h"
+#define original 2000
 
 
 typedef struct dictionary
@@ -23,6 +24,7 @@ int searchWord(char word[20]);/*返回单词在单词库中的位置*/
 void searchCn(char cn[80]);/*返回中文翻译在单词库中的位置*/
 void saveSql();/*保存文件函数*/
 void wordsBook();/*单词本函数*/ 
+void game1();//投骰子小游戏
 
 /*加载单词库数据*/
 int loadSql(data *sql,char path[100])
@@ -60,7 +62,9 @@ int printAction()
 	printf("   *            6、词条删除            *\n"); 
 	printf("   |            7、听写单词            |\n");
 	printf("   *            8、信息保存            *\n");
-	printf("   |            9、退出系统            |\n"); 
+	printf("   |            9、休闲小游戏          |\n"); 
+	printf("   *           10、访问开发者Github    *\n");
+	printf("   |           11、退出系统            |\n"); 
 	printf("   *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 	printf("请输入指令进行操作：");
 	scanf("%d",&n);
@@ -68,16 +72,16 @@ int printAction()
 	return n;
 }
 
+
 /*定义指令处理函数*/
 void dealAction(int action)
 {
-	wordsNumber =loadSql(dicSql,"dictionary.txt");
 	switch(action)
 	{
 		int pos;//单词位置 
 		char word[20];
 		char cn[80];
-		case 1:
+		case 1://查询英文单词的中文含义
 			printf("请输入您要查询的单词：");
 			scanf("%s",word);
 			printf("\n"); 
@@ -92,22 +96,22 @@ void dealAction(int action)
 			{
 				printf("对不起，没有找到你所需要的单词!\n");
 				printf("\n"); 
-				Sleep(3500);
+				system("pause");
 			}
 			break;
 		
-		case 2:
+		case 2://查询中文所对应的英文单词
 			printf("请您输入汉语词意（关键词即可)：");
 			scanf("%s",cn);
 			printf("\n"); 
 			searchCn(cn);
 			break;
 			
-		case 3:
+		case 3://单词本
 		    wordsBook();
 		    break;
 		
-		case 4:
+		case 4://向单词库中添加词条
 			printf("请您输入需要录入的单词(此处只需输入英文单词)：");
 			scanf("%s",word);
 			printf("\n"); 
@@ -123,7 +127,7 @@ void dealAction(int action)
 			system("pause");
 			break;
 		
-		case 5:
+		case 5://修改单词库中的词条
 			printf("请您输入需要修改的单词(此处只需输入英文单词)：");
 			scanf("%s",word);
 			printf("\n"); 
@@ -150,7 +154,7 @@ void dealAction(int action)
 			}
 			break;
 		
-		case 6:
+		case 6://删除指定词条
 			printf("请输入您要删除的单词：");
 			scanf("%s",word);
 			printf("\n"); 
@@ -171,19 +175,51 @@ void dealAction(int action)
 			    Sleep(3500);
 			break;
 			
-		case 7:
+		case 7://单词听写
 		    dictation();
 			break; 
 			    
-		case 8:
+		case 8://保存信息
 			saveSql();
 			printf("信息保存成功！\n");
 			printf("\n"); 
 			system("pause");
 			break;
 			
-		case 9:
+		case 9: 
+		    printf("1、投骰子小游戏\n");
+		    printf("2、皮卡丘小游戏\n");
+		    printf("请选择：");
+		    int choice;
+		    scanf("%d",&choice);
+			system("cls");
+		    switch(choice)
+		    {
+		    	case 1:
+		    		game1();
+		    		break;
+		    	case 2:
+		    		game2();
+		    		break;
+		    	default:
+		    		printf("选择错误！\n");
+		    		break;
+			}
+		    break;
+			
+		case 10://Github
+			printf("请确保您的网络畅通：");
+			puts("https://github.com/CC1AH/SummerTraining");
+			Sleep(2000);
+			ShellExecute(NULL,"open","https://github.com/CC1AH/SummerTraining",NULL,NULL,SW_NORMAL);
+			break;
+			
+		case 11://退出系统
 			printf("谢谢您的使用，再见！\n");
+			break;
+			
+		default:
+			printf("输入指令有误，请重新输入！\n");
 			break;
 			
 	}
@@ -232,12 +268,11 @@ void searchCn(char cn[80])
 		}	    
 	}
 	printf("\n");
-	system("pause"); 
 	if(judge==-1)
 	{
 		printf("对不起，未找到该中文对应的单词！\n\n");
-	    Sleep(2500);
 	} 
+	system("pause"); 
 }
 
 /*单词听写函数*/ 
@@ -326,35 +361,26 @@ void saveSql()
 /*单词本函数*/
 void wordsBook()
 {
+	system("cls");
+	srand(time(NULL));
 	data wordsBook[500];
 	int i =0,numOfWords,judge =-1;
+	numOfWords = loadSql(wordsBook,"wordsBook.txt");//从单词本中读取词条存放在结构体数组中
 	char word[20];
-	FILE *wf1 =NULL;
 	FILE *wf =NULL;
-	if((wf1 =fopen("wordsBook.txt","r"))==NULL)
-	{
-		printf("单词本打开失败！\n\n");
-		system("pause");
-	}
-	else
-	{
-		//从单词本文件中读取单词 并存放在结构体数组中 
-		while(fscanf(wf1,"%s\t%s",wordsBook[i].word,wordsBook[i].cn)!=EOF)
-	    {
-	        i++;
-	    }
-	    numOfWords = i;
-	    fclose(wf1);
-	}
 	if((wf =fopen("wordsBook.txt","w"))==NULL)
 	{
 		printf("单词本打开失败！\n\n");
 		system("pause");
 	}
 	else{
-		printf("1、打开单词本\n");
-		printf("2、添加新单词\n");
-		printf("3、删除单词\n");
+		printf("单词本:\n");
+		printf("   * * * * * * * * * * * *\n");
+		printf("   *   1、打开单词本     *\n");
+		printf("   *   2、添加新单词     *\n");
+		printf("   *   3、删除单词       *\n");
+		printf("   *   4、听写单词       *\n");
+		printf("   * * * * * * * * * * * *\n");
 		printf("请输入序号进行操作：");
 		int n;
 		scanf("%d",&n);
@@ -366,6 +392,7 @@ void wordsBook()
 			    {
 				    printf("%s\t%s\n",wordsBook[i].word,wordsBook[i].cn);
 			    }
+				//由于用“w”方式写文件会丢掉之前的内容，此处再把单词写入单词本
 			    for(i =0;i<numOfWords;i++)
 			    {
 					fprintf(wf,"%s\t%s\n",wordsBook[i].word,wordsBook[i].cn);	
@@ -419,7 +446,142 @@ void wordsBook()
 			    
 			    system("pause");
 				break;
+
+			case 4:
+				char *word[500];
+				char *cn[500];
+				system("cls");
+				int interval,randnum,round,type;
+				printf("请设置听写单词个数："); 
+				scanf("%d",&round); //听写单词的个数
+				printf("请设置间隔秒数：");
+				scanf("%d",&interval); //听写单词的间隔时间
+				interval *=1000;//将秒转换成毫秒
+				printf("请选择听写类型（1->汉英听写  2->英汉听写):");
+				scanf("%d",&type);
+				printf("\n");
+				//对type进行选择判断
+				switch(type)
+				{
+					case 1:
+						for(i=0;i<round;i++)
+	        			{
+		        			randnum = rand()%numOfWords+1;//从单词本中随机抽取单词
+		        			printf("Number %d:   %s\n",i+1,wordsBook[randnum].cn);
+		        			word[i] = wordsBook[randnum].word;
+		        			cn[i] = wordsBook[randnum].cn;
+		        			Sleep(interval);
+	        			}
+	        			printf("\n听写结束！答案如下：\n");
+						//for循环输出听写答案
+	       			    for(i=0;i<round;i++)
+	        			{
+		       			    printf("Number %d:   %s\t%s\n",i+1,word[i],cn[i]);
+						} 
+	        			printf("\n");
+	        			system("pause");
+	        			printf("\n");
+	        			break;
+	        
+	    			case 2:
+	    				for(i=0;i<round;i++)
+	        			{
+		        			randnum = rand()%numOfWords+1;//从单词本中随机抽取单词
+		       			    printf("Number %d:   %s\n",i+1,wordsBook[randnum].word);
+		        			word[i] = wordsBook[randnum].word;
+		        			cn[i] = wordsBook[randnum].cn;
+		       			    Sleep(interval);
+	        			}
+	        			printf("\n听写结束！答案如下：\n");
+						//for循环输出听写答案
+	        			for(i=0;i<round;i++)
+	        			{
+		        			printf("Number %d:   %s\t%s\n",i+1,word[i],cn[i]);
+	        			} 
+	        			printf("\n");
+	       			    system("pause");
+	        			printf("\n");
+	        			break;
+					default:
+						break;
+				}
+				//由于用“w”方式写文件会丢掉之前的内容，此处再把单词写入单词本
+				for(i =0;i<numOfWords;i++)
+			    {
+					fprintf(wf,"%s\t%s\n",wordsBook[i].word,wordsBook[i].cn);	
+				}
+				break;
 		}
 	} 
 	fclose(wf);
 } 
+
+//小游戏1
+void game1()
+{
+	srand(time(NULL));
+	int total=0;
+	int yue=original; 
+	printf("非常感谢您参与本游戏！\n");
+	printf("游戏规则如下：\n"); 
+	Sleep(1000);
+	printf("1、在游戏开始阶段，您拥有本金%d元\n\n",original);
+	Sleep(2000);
+	printf("2、您每局需要提前选择单或双，并确定下注金额\n\n");
+	Sleep(2000);
+	printf("3、若两枚骰子数量之和的单双性与您所选择的相同,\n则会从您的余额中增加对应下注金额的数量, \n");
+	printf("否则会从您的余额中扣除对应下注金额的数量\n\n"); 
+	Sleep(2000);
+	printf("下面，让我们开始游戏吧！\n") ;
+	Sleep(2000);
+	int judge=0;
+	while(yue>0)
+	{
+		int n=0;
+		int xiazhu=0;
+		printf("请输入您的选择（1-单，2-双）：");
+		scanf("%d",&n);
+		printf("请输入你想要下注的金额：");
+		scanf("%d",&xiazhu);
+		if(xiazhu>yue){
+			printf("您的余额不足！\n");
+			break; 
+		}
+		total=(rand()%6+1)+(rand()%6+1);
+		if(total%2==1&&n==1){
+			yue+=xiazhu;
+			printf("恭喜您赢了本局游戏，余额增加%d,剩余余额为：%d\n\n",xiazhu,yue);
+			if(yue<=0)break;
+			printf("请输入-1结束游戏，输入1继续游戏：");
+		    scanf("%d",&judge);
+		    if(judge==-1)break;
+		}
+		if(total%2==1&&n==2){
+			yue-=xiazhu;
+			printf("很遗憾，本局游戏您输了，余额减少%d,剩余余额为：%d\n\n",xiazhu,yue);
+			if(yue<=0)break;
+			printf("请输入-1结束游戏，输入1继续游戏：");
+		    scanf("%d",&judge);
+		    if(judge==-1)break;
+		}
+		if(total%2==0&&n==1){
+			yue-=xiazhu;
+			printf("很遗憾，本局游戏您输了，余额减少%d,剩余余额为：%d\n\n",xiazhu,yue);
+			if(yue<=0)break;
+			printf("请输入-1结束游戏，输入1继续游戏：");
+		    scanf("%d",&judge);
+		    if(judge==-1)break;
+		}
+		if(total%2==0&&n==2){
+			yue+=xiazhu;
+			printf("恭喜您赢了本局游戏，余额增加%d,剩余余额为：%d\n\n",xiazhu,yue);
+			if(yue<=0)break;
+			printf("请输入-1结束游戏，输入1继续游戏：");
+		    scanf("%d",&judge);
+		    if(judge==-1)break;
+		}
+	}
+	printf("游戏结束，您的余额为:%d!再次感谢您的参与！",yue);
+	system("pause"); 
+}
+
