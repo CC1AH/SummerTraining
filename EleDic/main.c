@@ -33,6 +33,8 @@
 //其中包含听写，收藏的附加功能函数collections和dictation （包含子功能函数 执行听写 保存听写 获取当前日期时间等等）
 #include "OtherOperation.h"
 
+//其中包含一个元音猜词小游戏和原始txt文件的打开功能函数
+#include"Entertainment.h"
 int main(){
     //初始化数据结构
     nodeptr mainptr = NULL;
@@ -100,9 +102,18 @@ int main(){
         printf("\t\t\t再见！");
         exit(1);
         break;
+    case 9:
+        EntertainmentMenu();
+        break;
+    case 10:
+        printf("请确保您的网络畅通,我们即将使用windows默认浏览器打开该项目的线上版本，您可以随时看到最新的更新\n");
+        Sleep(300);
+        puts("https://github.com/CC1AH/SummerTraining/tree/dev-XGH");
+        ShellExecute(NULL,"open","https://github.com/CC1AH/SummerTraining/tree/dev-XGH",NULL,NULL,SW_NORMAL);
+        break;
     default:
         break;
-    }
+        }
     choose = choseMenu();
     }
 }

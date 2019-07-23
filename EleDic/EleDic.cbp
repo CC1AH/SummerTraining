@@ -33,6 +33,7 @@
 		</Compiler>
 		<Unit filename="BasicFunctions.h" />
 		<Unit filename="BasicStructrue.h" />
+		<Unit filename="Entertainment.h" />
 		<Unit filename="OtherOperation.h" />
 		<Unit filename="StringUtility.h" />
 		<Unit filename="WordOperation.h" />
