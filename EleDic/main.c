@@ -4,7 +4,7 @@
 * 本项目已在公共仓库上线：https://github.com/CC1AH/SummerTraining/tree/dev-XGH
 * 项目进行时间 2019/7/20-2019/7/22
 * 开发平台：GNU GCC Compiler(mingw32-gcc.exe)-CodeBlocks-windows10.
-* 项目代码行数:937行
+* 项目代码行数:1041行
 *
 * 感谢：
 * github UserName-TransFormGang    提供算法参考
@@ -33,7 +33,7 @@
 //其中包含听写，收藏的附加功能函数collections和dictation （包含子功能函数 执行听写 保存听写 获取当前日期时间等等）
 #include "OtherOperation.h"
 
-//其中包含一个元音猜词小游戏和原始txt文件的打开功能函数
+//其中包含一个未开放的小游戏和原始txt文件的打开功能函数
 #include"Entertainment.h"
 int main(){
     //初始化数据结构
