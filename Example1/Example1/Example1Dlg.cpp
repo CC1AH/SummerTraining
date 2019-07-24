@@ -1,4 +1,3 @@
-
 // Example1Dlg.cpp : 实现文件
 //
 
@@ -24,14 +23,7 @@ int wordsNumber =0;//单词总数目
 data dicSql[8000];//单词库 
 
 int loadSql(data *sql,char path[100]);/*加载单词库数据*/
-int printAction();/*输出用户提示函数*/
-void dealAction(int action);/*定义指令处理函数*/
-void dictation();/*听写单词函数*/
 int searchWord(char word[20]);/*返回单词在单词库中的位置*/
-void searchCn(char cn[80]);/*返回中文翻译在单词库中的位置*/
-void saveSql();/*保存文件函数*/
-void wordsBook();/*单词本函数*/ 
-void game1();//投骰子小游戏
 
 
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
@@ -73,6 +65,8 @@ CExample1Dlg::CExample1Dlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CExample1Dlg::IDD, pParent)
 	, word(_T(""))
 	, cn(_T(""))
+	, cn2(_T(""))
+	, word2(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -84,13 +78,16 @@ void CExample1Dlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT5, word);
 	DDV_MaxChars(pDX, word, 20);
 	DDX_Text(pDX, IDC_EDIT6, cn);
+	DDX_Text(pDX, IDC_EDIT1, cn2);
+	DDX_Text(pDX, IDC_EDIT2, word2);
 }
 
 BEGIN_MESSAGE_MAP(CExample1Dlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDC_BUTTON2, &CExample1Dlg::OnBnClickedButton2)
+	ON_EN_CHANGE(IDC_EDIT5, &CExample1Dlg::XW_1_jianting)
+	ON_EN_CHANGE(IDC_EDIT1, &CExample1Dlg::XW_2_jianting)
 END_MESSAGE_MAP()
 
 
@@ -181,49 +178,64 @@ HCURSOR CExample1Dlg::OnQueryDragIcon()
 
 
 
-/*void CExample1Dlg::OnBnClickedButton1()
+//英译汉中文框中实时显现对应单词
+void CExample1Dlg::XW_1_jianting()
 {
-	// TODO: 在此添加控件通知处理程序代码
 	UpdateData(TRUE);
-	sum =x+y;
-	UpdateData(FALSE);
-}*/
-
-
-
-
-
-void CExample1Dlg::OnBnClickedButton2()
-{
-	// TODO: 在此添加控件通知处理程序代码
-	UpdateData(TRUE);
-	int i=0;
-	FILE *fp =NULL;
-	if((fp = fopen("dictionary.txt","r"))==NULL)
+	if(strcmp(CW2A(word),"")!=0)//如果英译汉单词输入框发生了改变则执行if内语句
 	{
-		cn ="sss";
-		UpdateData(FALSE);
-		return ;
-	}
-	while(fscanf(fp,"%s\t%s",dicSql[i].word,dicSql[i].cn)!=EOF)
-	{
-		i++;
-	}
-	fclose(fp);
-	char w[20];
-	strcpy(w,CW2A(word));//将CString类型的word转化为字符数组
-	int pos =searchWord(w);
-	if(pos!=-1)
-	{
-		cn = dicSql[pos].cn;
-		UpdateData(FALSE);
-	}
-	else
-	{
-		cn = "未找到！";
+		cn ="";
+		char wordtmp[20];//临时变量，用于存储获取的单词
+		strcpy(wordtmp,CW2A(word));//将CString类型转换成字符数组类型存储在临时变量中，cn为英译汉中输出中文那个编辑框的变量
+		wordsNumber =loadSql(dicSql,"dictionary.txt");//用loadSql函数读取文件，将所有单词放在结构体数组中并且返回单词数量
+		int i =0,judge =-1;
+		for(;i<wordsNumber;i++)
+		{
+			if(strstr(dicSql[i].word,wordtmp)!=NULL){//遍历结构体数组将包含用户输入单词的词条找出来
+				cn +=dicSql[i].word; //以下四行是将单词不停地加载cn这个字符串后面
+				cn +='\t';
+				cn +=dicSql[i].cn;
+				cn +="\r\n";
+				judge =1;
+			}	    
+		}
+		if(judge==-1)
+		{
+			cn="对不起，未找到该单词！\n\n";
+		} 
 		UpdateData(FALSE);
 	}
 }
+
+//汉译英中文框中实时显现对应单词
+void CExample1Dlg::XW_2_jianting()
+{
+	UpdateData(TRUE);//首先从控件处获取信息赋值给变量
+	if(strcmp(CW2A(cn2),"")!=0)
+	{
+		word2 ="";//word2为汉译英中单词界面的变量
+		char cn2tmp[80];//临时变量，用于存储获取的中文
+		strcpy(cn2tmp,CW2A(cn2));//将CString类型转换成字符数组类型存储在临时变量中，cn2为汉译英中输入中文那个编辑框的变量
+		wordsNumber =loadSql(dicSql,"dictionary.txt");//用loadSql函数读取文件，将所有单词放在结构体数组中并且返回单词数量
+		int i =0,judge =-1;
+		for(;i<wordsNumber;i++)
+		{
+			if(strstr(dicSql[i].cn,cn2tmp)!=NULL){//遍历结构体数组将包含用户输入中文的词条找出来
+				word2 +=dicSql[i].word; //以下四行是将单词不停地加载word2这个字符串后面
+				word2 +='\t';
+				word2 +=dicSql[i].cn;
+				word2 +="\r\n";
+				judge =1;
+			}	    
+		}
+		if(judge==-1)
+		{
+			word2="对不起，未找到该中文对应的单词！\n\n";
+		} 
+		UpdateData(FALSE);
+	}
+}
+
 
 /*加载单词库数据*/
 int loadSql(data *sql,char path[100])
@@ -240,7 +252,7 @@ int loadSql(data *sql,char path[100])
 		i++;
 	}
 	fclose(fp);
-	return i;
+	return i;//返回值为int型，即文件中所有单词的数量
 }
 
 /*返回单词在单词库中的位置*/
@@ -270,3 +282,10 @@ int searchWord(char word[20])
     }
     return -1;//如果找不到就返回-1 
 }
+
+
+
+
+
+
+

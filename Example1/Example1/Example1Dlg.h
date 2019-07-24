@@ -31,10 +31,12 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	
-	afx_msg void OnBnClickedButton1();
 	afx_msg void OnEnChangeEdit4();
 	CString word;
 	afx_msg void OnLbnSelchangeList1();
 	CString cn;
-	afx_msg void OnBnClickedButton2();
+	CString cn2;
+	CString word2;
+	afx_msg void XW_2_jianting();
+	afx_msg void XW_1_jianting();
 };
