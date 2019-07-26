@@ -1,0 +1,16 @@
+﻿生成启动时间为 2019/7/24 15:29:13。
+     1>项目“C:\Users\Administrator\Desktop\dictionary\dictionary\dictionary.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\dictionary.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt dictionaryDlg.cpp
+         dictionaryDlg.cpp
+       Link:
+         C:\Program Files\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrator\Desktop\dictionary\Debug\dictionary.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files\Microsoft Visual Studio 11.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"C:\Users\Administrator\Desktop\dictionary\Debug\dictionary.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"wWinMainCRTStartup" /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrator\Desktop\dictionary\Debug\dictionary.lib" /MACHINE:X86 Debug\dictionary.res
+         Debug\dictionary.obj
+         Debug\dictionaryDlg.obj
+         Debug\stdafx.obj
+         dictionary.vcxproj -> C:\Users\Administrator\Desktop\dictionary\Debug\dictionary.exe
+     1>已完成生成项目“C:\Users\Administrator\Desktop\dictionary\dictionary\dictionary.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:00.57
