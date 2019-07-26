@@ -1,0 +1,5 @@
+myOwnWord	我的单词
+yourOwnWord	你的单词
+hisOwnWord	他的单词
+OurOwnWord	我们的单词
+herOwnWord	她的单词

@@ -9,7 +9,7 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="资源文件">
+    <Filter Include="源文件\资源文件">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
@@ -47,56 +47,56 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="EleDicGroup.rc">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\EleDicGroup.rc2">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\EleDic_Group.ico">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="D:\AllAndriodDevelop\学习\最新付费资料\APP 素材\【3】APP设计素材（PNG图标）\【3】网站设计素材（PNG图标）\32 x 32\40个圆形实用PNG图标\heart-round.png">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="res\bitmap1.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="D:\VSPrograms\图片\academic-hat.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="D:\VSPrograms\用于导入到MFC中的图片\academic-hat.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="D:\VSPrograms\用于导入到MFC中的图片\add.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="D:\VSPrograms\用于导入到MFC中的图片\bluray.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="D:\VSPrograms\用于导入到MFC中的图片\bookmark.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="D:\VSPrograms\用于导入到MFC中的图片\books.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="D:\VSPrograms\用于导入到MFC中的图片\magic-wand.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="D:\VSPrograms\用于导入到MFC中的图片\map.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="D:\VSPrograms\用于导入到MFC中的图片\search.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="D:\VSPrograms\用于导入到MFC中的图片\delete.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
     <Image Include="..\BACKGROUND.bmp">
-      <Filter>资源文件</Filter>
+      <Filter>源文件\资源文件</Filter>
     </Image>
   </ItemGroup>
 </Project>
